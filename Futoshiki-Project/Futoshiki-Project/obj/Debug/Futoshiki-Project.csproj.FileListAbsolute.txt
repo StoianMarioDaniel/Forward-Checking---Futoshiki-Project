@@ -1,0 +1,11 @@
+C:\An4C\IA\Proiect\Forward-Checking---Futoshiki-Project\Futoshiki-Project\Futoshiki-Project\bin\Debug\Futoshiki-Project.exe.config
+C:\An4C\IA\Proiect\Forward-Checking---Futoshiki-Project\Futoshiki-Project\Futoshiki-Project\bin\Debug\Futoshiki-Project.exe
+C:\An4C\IA\Proiect\Forward-Checking---Futoshiki-Project\Futoshiki-Project\Futoshiki-Project\bin\Debug\Futoshiki-Project.pdb
+C:\An4C\IA\Proiect\Forward-Checking---Futoshiki-Project\Futoshiki-Project\Futoshiki-Project\obj\Debug\Futoshiki-Project.csproj.AssemblyReference.cache
+C:\An4C\IA\Proiect\Forward-Checking---Futoshiki-Project\Futoshiki-Project\Futoshiki-Project\obj\Debug\Futoshiki_Project.Form1.resources
+C:\An4C\IA\Proiect\Forward-Checking---Futoshiki-Project\Futoshiki-Project\Futoshiki-Project\obj\Debug\Futoshiki_Project.Properties.Resources.resources
+C:\An4C\IA\Proiect\Forward-Checking---Futoshiki-Project\Futoshiki-Project\Futoshiki-Project\obj\Debug\Futoshiki_Project.FutoshikiCell.resources
+C:\An4C\IA\Proiect\Forward-Checking---Futoshiki-Project\Futoshiki-Project\Futoshiki-Project\obj\Debug\Futoshiki-Project.csproj.GenerateResource.cache
+C:\An4C\IA\Proiect\Forward-Checking---Futoshiki-Project\Futoshiki-Project\Futoshiki-Project\obj\Debug\Futoshiki-Project.csproj.CoreCompileInputs.cache
+C:\An4C\IA\Proiect\Forward-Checking---Futoshiki-Project\Futoshiki-Project\Futoshiki-Project\obj\Debug\Futoshiki-Project.exe
+C:\An4C\IA\Proiect\Forward-Checking---Futoshiki-Project\Futoshiki-Project\Futoshiki-Project\obj\Debug\Futoshiki-Project.pdb
