@@ -13,7 +13,7 @@ namespace Futoshiki_Project
 {
     public partial class Form1: Form
     {
-        private FutoshikiCell[,] gridCells;
+        private CellGrid grid;
         private Label[,] hSigns;
         private Label[,] vSigns;
         public Form1()
@@ -28,8 +28,10 @@ namespace Futoshiki_Project
         private void GenerateBoardUI(int size)
         {
             pnlBoard.Controls.Clear();
+            this.Width = 200 + size * 105;
+            this.Height = 100 + size * 105;
 
-            gridCells = new FutoshikiCell[size, size];
+            grid = new CellGrid(size);
             hSigns = new Label[size, size - 1]; 
             vSigns = new Label[size - 1, size]; 
 
@@ -49,7 +51,7 @@ namespace Futoshiki_Project
                     int y = startY + r * (cellSize + gap);
                     cell.Location = new Point(x, y);
                     pnlBoard.Controls.Add(cell);
-                    gridCells[r, c] = cell;
+                    grid.SetCell(cell);
 
                     if (c < size - 1)
                     {
@@ -69,24 +71,24 @@ namespace Futoshiki_Project
                     }
                 }
             }
-            TestFillUI();
+            TestFillUI(size);
         }
         private Label CreateSignLabel()
         {
             Label lbl = new Label();
             lbl.AutoSize = true;
-            lbl.Font = new Font("Segoe UI", 20, FontStyle.Bold);
+            lbl.Font = new Font("Segoe UI", 20, FontStyle.Regular);
             lbl.ForeColor = Color.Red;
             lbl.Text = "";
             return lbl;
         }
-        private void TestFillUI()
+        private void TestFillUI(int size)
         {
             if (hSigns.GetLength(1) > 0) hSigns[0, 0].Text = "<";
-            if (vSigns.GetLength(0) > 0) vSigns[0, 0].Text = "v";
-            gridCells[0, 0].SetDomain("1 2 4");
-            gridCells[0, 1].SetValue(5);
-            gridCells[0, 1].IsFixed = true; 
+            if (vSigns.GetLength(0) > 0) vSigns[0, 0].Text = "∧";
+            grid.GetCell(0,0).GetDomain(grid,size);
+            grid.GetCell(0, 1).SetValue(5);
+            grid.GetCell(0, 1).IsFixed = true; 
         }
     }
 }

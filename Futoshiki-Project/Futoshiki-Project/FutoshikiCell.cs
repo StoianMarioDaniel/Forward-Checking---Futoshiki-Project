@@ -14,7 +14,7 @@ namespace Futoshiki_Project
     {
         public int Row { get; set; }
         public int Col { get; set; }
-
+        public int Value { get; set; }
         private bool _isFixed;
         public bool IsFixed
         {
@@ -51,20 +51,112 @@ namespace Futoshiki_Project
             }
             else
             {
+                this.Value = val;
                 lblValue.Text = val.ToString();
                 lblDomain.Text = "";
             }
         }
-        public void SetDomain(string domainText)
+        // Functie ce implementeaza Forward Checking pentru a returna o lista de valori posibile
+        public List<int> GetPosibleValues(CellGrid grid,int size)
         {
-            if (string.IsNullOrEmpty(lblValue.Text))
+            List<int> domeniu = Enumerable.Range(1,size).ToList();
+
+            //Verificam linia pe care se afla celula si eliminam valorile existente din domeniu
+            for(int c = 0;c<size;c++)
             {
-                lblDomain.Text = domainText;
+                if(c != this.Col && grid.GetCell(this.Row,c).Value != 0)
+                {
+                    domeniu.Remove(grid.GetCell(this.Row, c).Value);
+                }
             }
-            else
+            //Verificam si coloana pe care se afla celula
+            for (int r = 0; r < size; r++)
             {
-                lblDomain.Text = "";
+                if (r != this.Row && grid.GetCell(r, this.Col).Value != 0)
+                {
+                    domeniu.Remove(grid.GetCell(r, this.Col).Value);
+                }
             }
+            //Verificam lista de constrangeri
+            foreach(var constr in grid.GetConstraints())
+            {
+                // Verificam daca celula are vreo constrangere
+                bool isCel1 = (constr.Row1 ==  this.Row && constr.Col1 == this.Col);
+                bool isCel2 = (constr.Row2 ==  this.Row && constr.Col2 == this.Col);
+                if(!isCel1 && !isCel2)
+                {
+                    continue;
+                }
+                // Daca are, determinam vecinul si relatia celulei fata de el
+                FutoshikiCell vecin;
+                char sign = ' ';
+                if(isCel1)
+                {
+                    vecin = grid.GetCell(constr.Row2, constr.Col2);
+                    switch(constr.Sign)
+                    {
+                        case 'v':
+                            sign = '>';
+                            break;
+                        case '∧':
+                            sign = '<';
+                            break;
+                        default:
+                            sign = constr.Sign;
+                            break;
+                    }
+                }
+                else if(isCel2)
+                {
+                    vecin = grid.GetCell(constr.Row1, constr.Col1);
+                    switch (constr.Sign)
+                    {
+                        case 'v':
+                            sign = '<';
+                            break;
+                        case '∧':
+                            sign = '>';
+                            break;
+                        case '>':
+                            sign = '<';
+                            break;
+                        case '<':
+                            sign = '>';
+                            break;
+                    }
+                }
+                // Daca vecinul are valoare, eliminam din domeniu valorile care nu respecta constrangerea
+                if (this.Value != 0)
+                {
+                    if(sign == '>')
+                    {
+                        domeniu.RemoveAll(x => x <= this.Value);
+                    }
+                    else if(sign == '<')
+                    {
+                        domeniu.RemoveAll(x => x >= this.Value);
+                    }
+                }
+                // Daca vecinul nu are valoare, facem o euristica si eliminam extremitatile
+                else
+                {
+                    if (sign == '>')
+                    {
+                        domeniu.Remove(1);
+                    }
+                    else if (sign == '<')
+                    {
+                        domeniu.Remove(size);
+                    }
+                }
+            }
+            // Returnam lista de posibilitati
+            return domeniu;
+        }
+        public void GetDomain(CellGrid grid,int size)
+        {
+            List<int> domeniu = GetPosibleValues(grid, size);
+            // TO BE DONE: Afisarea posibilitatilor
         }
         public void SetError(bool isError)
         {
