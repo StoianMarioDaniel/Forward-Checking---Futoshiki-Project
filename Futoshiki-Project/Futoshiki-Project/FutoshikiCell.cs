@@ -42,6 +42,9 @@ namespace Futoshiki_Project
             InitializeComponent();
             lblValue.Text = "";
             lblDomain.Text = "";
+            lblValue.Click += Component_Click;
+            lblDomain.Click += Component_Click;
+            this.Click += Component_Click;
         }
         public void SetValue(int val)
         {
@@ -56,6 +59,54 @@ namespace Futoshiki_Project
                 lblDomain.Text = "";
             }
         }
+        /*
+         * Stoian Mairo-Daniel
+         */
+
+        public event EventHandler CellClicked;
+
+        private void Component_Click(object sender, EventArgs e)
+        {
+            CellClicked?.Invoke(this, e);
+        }
+        public void SetSelected(bool isSelected)
+        {
+            if (isSelected)
+            {
+                this.BorderStyle = BorderStyle.Fixed3D;
+                this.BackColor = Color.LightCyan;
+            }
+            else
+            {
+                this.BorderStyle = BorderStyle.FixedSingle;
+                this.BackColor = IsFixed ? Color.FromArgb(240, 240, 240) : Color.White;
+            }
+        }
+        public void SetDomain(string domainText)
+        {
+            if (this.Value == 0)
+            {
+                lblDomain.Text = domainText;
+                lblDomain.ForeColor = Color.Gray;
+            }
+            else
+            {
+                lblDomain.Text = "";
+            }
+        }
+
+        public void SetError(bool isError)
+        {
+            if (isError)
+                this.BackColor = Color.MistyRose;
+            else
+                this.BackColor = IsFixed ? Color.FromArgb(240, 240, 240) : Color.White;
+        }
+
+        /*
+         * 
+        */
+
         // Functie ce implementeaza Forward Checking pentru a returna o lista de valori posibile
         public List<int> GetPosibleValues(CellGrid grid,int size)
         {
@@ -88,22 +139,17 @@ namespace Futoshiki_Project
                     continue;
                 }
                 // Daca are, determinam vecinul si relatia celulei fata de el
-                FutoshikiCell vecin;
+                FutoshikiCell vecin=null;
                 char sign = ' ';
                 if(isCel1)
                 {
                     vecin = grid.GetCell(constr.Row2, constr.Col2);
-                    switch(constr.Sign)
+                    switch (constr.Sign)
                     {
-                        case 'v':
-                            sign = '>';
-                            break;
-                        case '∧':
-                            sign = '<';
-                            break;
-                        default:
-                            sign = constr.Sign;
-                            break;
+                        case '<': sign = '<'; break;
+                        case '>': sign = '>'; break;
+                        case 'v': sign = '<'; break; 
+                        case '∧': sign = '>'; break; 
                     }
                 }
                 else if(isCel2)
@@ -111,59 +157,51 @@ namespace Futoshiki_Project
                     vecin = grid.GetCell(constr.Row1, constr.Col1);
                     switch (constr.Sign)
                     {
-                        case 'v':
-                            sign = '<';
-                            break;
-                        case '∧':
-                            sign = '>';
-                            break;
-                        case '>':
-                            sign = '<';
-                            break;
-                        case '<':
-                            sign = '>';
-                            break;
+                        case '<': sign = '>'; break;
+                        case '>': sign = '<'; break;
+                        case 'v': sign = '>'; break;
+                        case '∧': sign = '<'; break;
                     }
                 }
                 // Daca vecinul are valoare, eliminam din domeniu valorile care nu respecta constrangerea
-                if (this.Value != 0)
+                if (vecin != null)
                 {
-                    if(sign == '>')
+                    if (vecin.Value != 0)
                     {
-                        domeniu.RemoveAll(x => x <= this.Value);
+                        if (sign == '<') 
+                        {
+                            domeniu.RemoveAll(x => x >= vecin.Value);
+                        }
+                        else if (sign == '>')
+                        {
+                            domeniu.RemoveAll(x => x <= vecin.Value);
+                        }
                     }
-                    else if(sign == '<')
+                    // Daca vecinul nu are valoare, facem o euristica si eliminam extremitatile
+                    else
                     {
-                        domeniu.RemoveAll(x => x >= this.Value);
-                    }
-                }
-                // Daca vecinul nu are valoare, facem o euristica si eliminam extremitatile
-                else
-                {
-                    if (sign == '>')
-                    {
-                        domeniu.Remove(1);
-                    }
-                    else if (sign == '<')
-                    {
-                        domeniu.Remove(size);
+                        if (sign == '<')
+                        {
+                            domeniu.Remove(size);
+                        }
+                        else if (sign == '>')
+                        {
+                            domeniu.Remove(1);
+                        }
                     }
                 }
             }
             // Returnam lista de posibilitati
             return domeniu;
         }
+        /*
+         * Stoian Mairo-Daniel
+        */
         public void GetDomain(CellGrid grid,int size)
         {
             List<int> domeniu = GetPosibleValues(grid, size);
-            // TO BE DONE: Afisarea posibilitatilor
-        }
-        public void SetError(bool isError)
-        {
-            if (isError)
-                this.BackColor = Color.MistyRose;
-            else
-                this.BackColor = IsFixed ? Color.FromArgb(240, 240, 240) : Color.White;
+            string domainText = string.Join(" ", domeniu);
+            this.SetDomain(domainText);
         }
         private void lblValue_Click(object sender, EventArgs e)
         {
