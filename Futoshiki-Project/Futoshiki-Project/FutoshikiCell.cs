@@ -50,6 +50,7 @@ namespace Futoshiki_Project
         {
             if (val == 0)
             {
+                this.Value = 0;
                 lblValue.Text = "";
             }
             else

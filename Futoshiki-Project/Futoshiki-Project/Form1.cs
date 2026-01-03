@@ -47,8 +47,11 @@ namespace Futoshiki_Project
 
             if (keyData == Keys.Back)
             {
-                selectedCell.SetValue(0);
-                RefreshAllDomains();
+                if (!selectedCell.IsFixed)
+                {
+                    selectedCell.SetValue(0);
+                    RefreshAllDomains();
+                }
                 return true;
             }
 
@@ -64,6 +67,16 @@ namespace Futoshiki_Project
                 if (val > size) return true;
                 List<int> validOptions = selectedCell.GetPosibleValues(grid, size);
 
+                if(validOptions.Count==0)
+                {
+                    MessageBox.Show("Mutare imposibila pentru numerele selectate momentan nu se potriveste nimic aici.\nIncearca alte combinatii (selectează alte casute si sterge cifrele cu Backspace).","Blocaj Logic",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                    );
+                    return true;
+                }
+
+
                 if (validOptions.Contains(val))
                 {
                     selectedCell.SetValue(val);
@@ -72,7 +85,7 @@ namespace Futoshiki_Project
                 }
                 else
                 {
-                    MessageBox.Show($"Mutare invalidă! Conform regulilor, aici poți pune doar: {string.Join(", ", validOptions)}");
+                    MessageBox.Show($"Mutare invalida! Conform regulilor, aici poti pune doar: {string.Join(", ", validOptions)}");
                 }
                 return true;
             }

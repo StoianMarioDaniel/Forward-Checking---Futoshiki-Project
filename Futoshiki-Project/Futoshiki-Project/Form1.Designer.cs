@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.chkAnimation = new System.Windows.Forms.CheckBox();
-            this.btnSolve = new System.Windows.Forms.Button();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.numSize = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,8 +40,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.LightGray;
-            this.panel1.Controls.Add(this.chkAnimation);
-            this.panel1.Controls.Add(this.btnSolve);
             this.panel1.Controls.Add(this.btnGenerate);
             this.panel1.Controls.Add(this.numSize);
             this.panel1.Controls.Add(this.label1);
@@ -52,27 +48,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 605);
             this.panel1.TabIndex = 0;
-            // 
-            // chkAnimation
-            // 
-            this.chkAnimation.AutoSize = true;
-            this.chkAnimation.Checked = true;
-            this.chkAnimation.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAnimation.Location = new System.Drawing.Point(12, 175);
-            this.chkAnimation.Name = "chkAnimation";
-            this.chkAnimation.Size = new System.Drawing.Size(81, 20);
-            this.chkAnimation.TabIndex = 4;
-            this.chkAnimation.Text = "Animație";
-            this.chkAnimation.UseVisualStyleBackColor = true;
-            // 
-            // btnSolve
-            // 
-            this.btnSolve.Location = new System.Drawing.Point(12, 130);
-            this.btnSolve.Name = "btnSolve";
-            this.btnSolve.Size = new System.Drawing.Size(143, 23);
-            this.btnSolve.TabIndex = 3;
-            this.btnSolve.Text = "Rezolvă (Start)";
-            this.btnSolve.UseVisualStyleBackColor = true;
             // 
             // btnGenerate
             // 
@@ -144,11 +119,9 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnSolve;
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.NumericUpDown numSize;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox chkAnimation;
         private System.Windows.Forms.Panel pnlBoard;
     }
 }
