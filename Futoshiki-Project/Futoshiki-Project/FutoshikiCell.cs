@@ -149,8 +149,8 @@ namespace Futoshiki_Project
                     {
                         case '<': sign = '<'; break;
                         case '>': sign = '>'; break;
-                        case 'v': sign = '<'; break; 
-                        case '∧': sign = '>'; break; 
+                        case 'v': sign = '>'; break; 
+                        case '∧': sign = '<'; break; 
                     }
                 }
                 else if(isCel2)
@@ -160,8 +160,8 @@ namespace Futoshiki_Project
                     {
                         case '<': sign = '>'; break;
                         case '>': sign = '<'; break;
-                        case 'v': sign = '>'; break;
-                        case '∧': sign = '<'; break;
+                        case 'v': sign = '<'; break;
+                        case '∧': sign = '>'; break;
                     }
                 }
                 // Daca vecinul are valoare, eliminam din domeniu valorile care nu respecta constrangerea
