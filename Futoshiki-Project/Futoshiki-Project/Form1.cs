@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Futoshiki_Project;
 
 namespace Futoshiki_Project
 {
@@ -16,6 +10,9 @@ namespace Futoshiki_Project
         private CellGrid grid;
         private Label[,] hSigns;
         private Label[,] vSigns;
+        private int size;
+        private int dificulty;
+        const int EASY = 40, MEDIUM = 30, HARD = 20;
 
         private Random rng = new Random();
         private FutoshikiCell selectedCell = null;
@@ -24,10 +21,13 @@ namespace Futoshiki_Project
             InitializeComponent();
             this.KeyPreview = true;
             this.CenterToScreen();
+            dificultyScale.SelectedIndex = 1;
+            dificulty = GetDificultyValue(dificultyScale.SelectedIndex);
         }
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-            int size = (int)numSize.Value;
+            size = (int)numSize.Value;
+            dificulty = GetDificultyValue(dificultyScale.SelectedIndex);
             GenerateBoardUI(size);
         }
 
@@ -64,7 +64,6 @@ namespace Futoshiki_Project
 
             if (val > 0)
             {
-                int size = (int)numSize.Value;
                 if (val > size) return true;
                 List<int> validOptions = selectedCell.GetPosibleValues(grid, size);
 
@@ -94,7 +93,6 @@ namespace Futoshiki_Project
         }
         private void RefreshAllDomains()
         {
-            int size = (int)numSize.Value;
             for (int r = 0; r < size; r++)
             {
                 for (int c = 0; c < size; c++)
@@ -194,7 +192,7 @@ namespace Futoshiki_Project
                     int y = startY + r * (cellSize + gap);
                     if (c < size - 1)
                     {
-                        if (rng.Next(100) < 30)
+                        if (rng.Next(100) < dificulty)
                         {
                             Label lblH = CreateSignLabel();
                             lblH.Location = new Point(x + cellSize + (gap / 2) - 15, y + (cellSize / 2) - 20);
@@ -210,7 +208,7 @@ namespace Futoshiki_Project
                     }
                     if (r < size - 1)
                     {
-                        if (rng.Next(100) < 30)
+                        if (rng.Next(100) < dificulty)
                         {
                             Label lblV = CreateSignLabel();
                             lblV.Location = new Point(x + (cellSize / 2) - 12, y + cellSize + (gap / 2) - 20);
@@ -237,6 +235,20 @@ namespace Futoshiki_Project
             lbl.ForeColor = Color.Red;
             lbl.Text = "";
             return lbl;
+        }
+        int GetDificultyValue(int option)
+        {
+            switch (option)
+            {
+                case 0:
+                    return EASY;
+                case 1:
+                    return MEDIUM;
+                case 2:
+                    return HARD;
+                default:
+                    return MEDIUM;
+            }
         }
     }
 }

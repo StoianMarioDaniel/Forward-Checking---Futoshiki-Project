@@ -33,6 +33,8 @@
             this.numSize = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlBoard = new System.Windows.Forms.Panel();
+            this.dificultyScale = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSize)).BeginInit();
             this.SuspendLayout();
@@ -40,6 +42,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.LightGray;
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.dificultyScale);
             this.panel1.Controls.Add(this.numSize);
             this.panel1.Controls.Add(this.btnGenerate);
             this.panel1.Controls.Add(this.label1);
@@ -52,7 +56,7 @@
             // btnGenerate
             // 
             this.btnGenerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerate.Location = new System.Drawing.Point(22, 99);
+            this.btnGenerate.Location = new System.Drawing.Point(20, 181);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(143, 30);
             this.btnGenerate.TabIndex = 2;
@@ -103,6 +107,29 @@
             this.pnlBoard.Size = new System.Drawing.Size(759, 605);
             this.pnlBoard.TabIndex = 1;
             // 
+            // dificultyScale
+            // 
+            this.dificultyScale.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dificultyScale.FormattingEnabled = true;
+            this.dificultyScale.Items.AddRange(new object[] {
+            "Easy",
+            "Medium",
+            "Hard"});
+            this.dificultyScale.Location = new System.Drawing.Point(32, 122);
+            this.dificultyScale.Name = "dificultyScale";
+            this.dificultyScale.Size = new System.Drawing.Size(121, 28);
+            this.dificultyScale.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(47, 89);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(85, 20);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Dificultate";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -126,6 +153,8 @@
         private System.Windows.Forms.NumericUpDown numSize;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnlBoard;
+        private System.Windows.Forms.ComboBox dificultyScale;
+        private System.Windows.Forms.Label label2;
     }
 }
 
