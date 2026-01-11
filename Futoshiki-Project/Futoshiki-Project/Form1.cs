@@ -23,6 +23,7 @@ namespace Futoshiki_Project
         {
             InitializeComponent();
             this.KeyPreview = true;
+            this.CenterToScreen();
         }
         private void btnGenerate_Click(object sender, EventArgs e)
         {
@@ -127,6 +128,7 @@ namespace Futoshiki_Project
             pnlBoard.Controls.Clear();
             this.Width = 200 + size * 105;
             this.Height = 100 + size * 105;
+            this.CenterToScreen();
 
             grid = new CellGrid(size);
             hSigns = new Label[size, size - 1]; 
@@ -192,7 +194,7 @@ namespace Futoshiki_Project
                     int y = startY + r * (cellSize + gap);
                     if (c < size - 1)
                     {
-                        if (rng.Next(100) < 40)
+                        if (rng.Next(100) < 30)
                         {
                             Label lblH = CreateSignLabel();
                             lblH.Location = new Point(x + cellSize + (gap / 2) - 15, y + (cellSize / 2) - 20);
@@ -208,15 +210,15 @@ namespace Futoshiki_Project
                     }
                     if (r < size - 1)
                     {
-                        if (rng.Next(100) < 40)
+                        if (rng.Next(100) < 30)
                         {
                             Label lblV = CreateSignLabel();
                             lblV.Location = new Point(x + (cellSize / 2) - 12, y + cellSize + (gap / 2) - 20);
                             pnlBoard.Controls.Add(lblV);
                             vSigns[r, c] = lblV;
                             char semn;
-                            if (solution[r, c] < solution[r + 1, c]) semn = 'v';
-                            else semn = '∧';
+                            if (solution[r, c] < solution[r + 1, c]) semn = '∧';
+                            else semn = 'v';
 
                             lblV.Text = semn.ToString();
                             grid.AddConstraint(grid.GetCell(r, c), grid.GetCell(r + 1, c), semn);
@@ -225,7 +227,6 @@ namespace Futoshiki_Project
                 }
             }
             RefreshAllDomains();
-           // TestFillUI(size);
         }
 
         private Label CreateSignLabel()
@@ -236,20 +237,6 @@ namespace Futoshiki_Project
             lbl.ForeColor = Color.Red;
             lbl.Text = "";
             return lbl;
-        }
-        private void TestFillUI(int size)
-        {
-            if (grid.GetCell(0, 1) != null)
-            {
-                grid.GetCell(0, 1).SetValue(5);
-                grid.GetCell(0, 1).IsFixed = true;
-            }
-
-            foreach (var constr in grid.GetConstraints())
-            {
-                grid.GetCell(constr.Row1, constr.Col1).GetDomain(grid, size);
-                grid.GetCell(constr.Row2, constr.Col2).GetDomain(grid, size);
-            }
         }
     }
 }
