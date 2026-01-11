@@ -26,7 +26,7 @@ namespace Futoshiki_Project
                 {
                     lblValue.ForeColor = Color.DarkBlue;
                     lblValue.Font = new Font("Segoe UI", 20, FontStyle.Bold);
-                    this.BackColor = Color.FromArgb(240, 240, 240);
+                    this.BackColor = Color.LightGray;
                 }
                 else
                 {
@@ -75,12 +75,12 @@ namespace Futoshiki_Project
             if (isSelected)
             {
                 this.BorderStyle = BorderStyle.Fixed3D;
-                this.BackColor = Color.LightCyan;
+                this.BackColor = Color.LightSkyBlue;
             }
             else
             {
                 this.BorderStyle = BorderStyle.FixedSingle;
-                this.BackColor = IsFixed ? Color.FromArgb(240, 240, 240) : Color.White;
+                this.BackColor = IsFixed ? Color.LightGray : Color.White;
             }
         }
         public void SetDomain(string domainText)
@@ -88,7 +88,7 @@ namespace Futoshiki_Project
             if (this.Value == 0)
             {
                 lblDomain.Text = domainText;
-                lblDomain.ForeColor = Color.Gray;
+                lblDomain.ForeColor = Color.DimGray;
             }
             else
             {

@@ -12,7 +12,7 @@ namespace Futoshiki_Project
         private Label[,] vSigns;
         private int size;
         private int dificulty;
-        const int EASY = 40, MEDIUM = 30, HARD = 20;
+        const int EASY = 40, MEDIUM = 30, HARD = 10;
 
         private Random rng = new Random();
         private FutoshikiCell selectedCell = null;
@@ -231,7 +231,7 @@ namespace Futoshiki_Project
         {
             Label lbl = new Label();
             lbl.AutoSize = true;
-            lbl.Font = new Font("Segoe UI", 20, FontStyle.Regular);
+            lbl.Font = new Font("Segoe UI", 21, FontStyle.Regular);
             lbl.ForeColor = Color.Red;
             lbl.Text = "";
             return lbl;

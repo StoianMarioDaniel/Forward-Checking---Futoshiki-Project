@@ -47,6 +47,7 @@
             // 
             this.lblDomain.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblDomain.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDomain.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblDomain.Location = new System.Drawing.Point(0, 73);
             this.lblDomain.Name = "lblDomain";
             this.lblDomain.Size = new System.Drawing.Size(86, 16);

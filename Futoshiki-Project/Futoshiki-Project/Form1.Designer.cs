@@ -41,7 +41,8 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.LightGray;
+            this.panel1.BackColor = System.Drawing.Color.GreenYellow;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.dificultyScale);
             this.panel1.Controls.Add(this.numSize);
@@ -100,7 +101,7 @@
             // pnlBoard
             // 
             this.pnlBoard.AutoScroll = true;
-            this.pnlBoard.BackColor = System.Drawing.Color.White;
+            this.pnlBoard.BackColor = System.Drawing.Color.LightGreen;
             this.pnlBoard.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBoard.Location = new System.Drawing.Point(200, 0);
             this.pnlBoard.Name = "pnlBoard";
